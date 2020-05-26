@@ -8,7 +8,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.listview.R
 
-class CustomAdapter(val userList:ArrayList<User>) :
+class CustomAdapter(private val userList:ArrayList<User>) :
     RecyclerView.Adapter<CustomAdapter.ViewHolder>() {
 
     class ViewHolder (itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -17,18 +17,14 @@ class CustomAdapter(val userList:ArrayList<User>) :
 
         private var clicklistener: Clicklistener? = null
 
-        fun setEvent(clicklistener:Clicklistener) {
-            this.clicklistener = Clicklistener
-        }
-
         init {
             img_icon = itemView.findViewById(R.id.newsPaperlogo) as ImageView
             txt_desc = itemView.findViewById(R.id.newsPaper) as TextView
 
-            itemView.setOnClickListener(this)
+            setOnClickListener()
         }
 
-        public override fun onClick(v: View?) {
+        public fun onClick(v: View?) {
             clicklistener?.onCartItemClick(v, adapterPosition)
 
 
@@ -51,5 +47,9 @@ class CustomAdapter(val userList:ArrayList<User>) :
         holder.txt_desc.text = user.text
         holder.img_icon.setImageResource(user.image)
     }
+
+}
+
+private fun setOnClickListener() {
 
 }
