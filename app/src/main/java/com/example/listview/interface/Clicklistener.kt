@@ -1,8 +1,7 @@
-package layout
+package com.example.listview.`interface`
 
 import android.view.View
 
-interface Clicklistener {
+interface ClickListener {
     fun onCartItemClick (view: View?, position: Int)
-
 }

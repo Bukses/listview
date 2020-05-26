@@ -1,4 +1,4 @@
-package layout
+package com.example.listview.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -7,6 +7,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.listview.R
+import com.example.listview.`interface`.ClickListener
+import layout.User
 
 class CustomAdapter(private val userList:ArrayList<User>) :
     RecyclerView.Adapter<CustomAdapter.ViewHolder>() {
@@ -15,7 +17,7 @@ class CustomAdapter(private val userList:ArrayList<User>) :
         internal var img_icon: ImageView
         internal var txt_desc: TextView
 
-        private var clicklistener: Clicklistener? = null
+        private var clicklistener: ClickListener? = null
 
         init {
             img_icon = itemView.findViewById(R.id.newsPaperlogo) as ImageView
