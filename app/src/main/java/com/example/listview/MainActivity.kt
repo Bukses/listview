@@ -7,6 +7,7 @@ import android.widget.LinearLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.activity_main.*
+import layout.CustomAdapter
 import layout.User
 
 class MainActivity : AppCompatActivity() {
@@ -18,6 +19,7 @@ class MainActivity : AppCompatActivity() {
 
         val recyclerView= findViewById<RecyclerView>(R.id.listView)
         listView.layoutManager= LinearLayoutManager(this, LinearLayout.VERTICAL, false)
+
 
         val users=ArrayList<User>()
 

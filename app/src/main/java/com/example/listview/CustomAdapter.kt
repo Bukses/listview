@@ -1,5 +1,6 @@
 package layout
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -7,30 +8,31 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.listview.R
+import com.example.listview.WebView
 
 class CustomAdapter(private val userList:ArrayList<User>) :
     RecyclerView.Adapter<CustomAdapter.ViewHolder>() {
 
-    class ViewHolder (itemView: View) : RecyclerView.ViewHolder(itemView) {
-        internal var img_icon: ImageView
-        internal var txt_desc: TextView
+    class ViewHolder (itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
 
+        var img_icon: ImageView = itemView.findViewById(R.id.newsPaperlogo)
+        var txt_desc: TextView = itemView.findViewById(R.id.newsPaper)
         private var clicklistener: Clicklistener? = null
 
-        init {
-            img_icon = itemView.findViewById(R.id.newsPaperlogo) as ImageView
-            txt_desc = itemView.findViewById(R.id.newsPaper) as TextView
-
-            setOnClickListener()
+        init{
+            itemView.setOnClickListener(this)
         }
 
-        public fun onClick(v: View?) {
-            clicklistener?.onCartItemClick(v, adapterPosition)
+        fun setClicklistener(clicklistener: Clicklistener){
+        this.clicklistener = clicklistener }
 
-
+        override fun onClick(v: View?) {
+            clicklistener?.setOnClickListener(adapterPosition)
         }
+
 
     }
+    private lateinit var clicklistener: Clicklistener
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val v = LayoutInflater.from(parent.context).inflate(R.layout.list_layout, parent, false)
@@ -46,10 +48,21 @@ class CustomAdapter(private val userList:ArrayList<User>) :
 
         holder.txt_desc.text = user.text
         holder.img_icon.setImageResource(user.image)
+
+        holder.itemView.setOnClickListener(object: Clicklistener {
+            override fun setOnClickListener(position: Int) {
+                val intent = Intent (itemView.context, WebView::class.java)
+                itemView.context.StartActivity(intent)
+            }
+
+
+        }
+
+        }
     }
 
-}
-
-private fun setOnClickListener() {
 
 }
+
+
+

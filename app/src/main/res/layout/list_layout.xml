@@ -12,9 +12,10 @@
         android:layout_margin="3dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardCornerRadius="8dp">
+        app:cardCornerRadius="8dp"
+        android:id="@+id/clicked">
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -29,17 +30,23 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="100dp"
                 android:layout_marginLeft="100dp"
+                android:textSize="20sp"
                 android:text="@string/newspaper">
             </TextView>
 
+
             <ImageView
-                android:layout_width="60dp"
-                android:layout_height="60dp"
                 android:id="@+id/newsPaperlogo"
-                android:contentDescription="@string/todo">
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_marginLeft="20dp"
+                android:src="@mipmap/ic_launcher"
+                android:contentDescription="@string/todo"
+                android:layout_marginStart="20dp">
+
 
 
             </ImageView>
-        </LinearLayout>
+        </RelativeLayout>
     </androidx.cardview.widget.CardView>
 </LinearLayout>
