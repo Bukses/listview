@@ -4,6 +4,7 @@ import android.app.PendingIntent.getActivity
 import android.os.Bundle
 import android.widget.Adapter
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.listview.adapter.CustomAdapter
@@ -16,9 +17,16 @@ class MainActivity : AppCompatActivity(), Clicklistener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
+        supportActionBar?.apply {
+            this.themedContext.setTheme(R.style.ToolbarTheme)
+        }
         val listView = findViewById<RecyclerView>(R.id.listView)
-        listView.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
+        listView.apply {
+            layoutManager = LinearLayoutManager(this@MainActivity, RecyclerView.VERTICAL, false)
+            addItemDecoration(DividerItemDecoration(this@MainActivity, RecyclerView.VERTICAL).apply {
+                this.setDrawable(resources.getDrawable(R.drawable.item_divider))
+            })
+        }
 
         populate()
     }
@@ -32,7 +40,7 @@ class MainActivity : AppCompatActivity(), Clicklistener {
         users.add(User("The Voice Newspaper", R.drawable.ic_the_voice,"https://thevoicenews.com.ng/"))
         users.add(User("Blueprint Newspaper", R.drawable.ic_blueprint,"https://www.blueprint.ng/"))
         users.add(User("Business Day", R.drawable.ic_business_day,"https://businessday.ng/"))
-        users.add(User("Compass Newspaper", R.drawable.ic_compass_news,"https://www.compassnewspaper.com.ng/"))
+        users.add(User("Compass Newspaper", R.drawable.ic_compass,"https://www.compassnewspaper.com.ng/"))
         users.add(User("Complete Sports", R.drawable.ic_complete_sport,"https://www.completesports.com/"))
         users.add(User("Daily Post", R.drawable.ic_daily_post,"https://dailypost.ng/"))
         users.add(User("Daily Times of Nigeria", R.drawable.ic_daily_times,"https://dailytimes.ng/"))
@@ -40,7 +48,7 @@ class MainActivity : AppCompatActivity(), Clicklistener {
         users.add(User("Daylight Nigeria", R.drawable.ic_daylight,"https://daylightng.com/"))
         users.add(User("Entertainment Express", R.drawable.ic_express,"https://express.ng/" ))
         users.add(User("Guardian", R.drawable.ic_guardian, "https://guardian.ng/"))
-        users.add(User("Independent", R.drawable.ic_guardian , "https://www.independent.ng/"))
+        users.add(User("Independent", R.drawable.ic_independent , "https://www.independent.ng/"))
         users.add(User("Leadership", R.drawable.ic_leadership, "https://leadership.ng/"))
         users.add(User("Mirror", R.drawable.ic_national_mirror, "https://www.nationalmirror.net/"))
         users.add(User("The Nation", R.drawable.ic_the_nation, "https://thenationonlineng.net/"))

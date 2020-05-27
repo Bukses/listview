@@ -5,29 +5,28 @@
     android:id="@+id/clicked"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="3dp"
-    android:foreground="?selectableItemBackground"
-    app:cardCornerRadius="8dp">
+    android:foreground="?selectableItemBackground">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="72dp"
-        android:cardBackgroundColor="#fafafa"
+        android:layout_height="92dp"
+        android:padding="8dp"
         tools:ignore="UseCompoundDrawables">
 
         <TextView
             android:id="@+id/newsPaper"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="50dp"
-            android:layout_marginEnd="30dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="8dp"
             android:text="@string/newspaper"
-            android:textSize="18sp"
-            android:textStyle="bold"
+            android:fontFamily="@font/avenir_book"
+            android:maxLines="2"
+            android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintLeft_toRightOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/imageView"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/cardView"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.509" />
@@ -37,27 +36,32 @@
             android:id="@+id/imageView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="184dp"
-            android:layout_marginTop="24dp"
-            android:src="@drawable/icon_right"
-            app:layout_constraintStart_toStartOf="@+id/newsPaper"
+            android:layout_marginEnd="4dp"
+            android:src="@drawable/ic_chevron_right"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/newsPaper"
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView"
             android:layout_width="wrap_content"
-            android:layout_height="40dp"
+            android:layout_height="0dp"
+            android:layout_margin="4dp"
+            app:cardCornerRadius="4dp"
             android:adjustViewBounds="true"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
+                android:layout_height="match_parent"
                 android:id="@+id/newsPaperlogo"
-                android:layout_width="175dp"
-                android:layout_height="40dp"
                 android:contentDescription="@string/todo"
-                android:src="@drawable/ic_the_voice" />
+                android:layout_width="175dp"
+                android:padding="1dp"
+                android:scaleType="fitCenter"
+                tools:src="@drawable/ic_business_day" />
         </androidx.cardview.widget.CardView>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

@@ -1,5 +1,6 @@
 package com.example.listview.adapter
 
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,14 +16,22 @@ class CustomAdapter(private val userList: ArrayList<User>, private val listener:
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(item: User) = with(itemView) {
             newsPaperlogo.setImageResource(item.image)
-            newsPaper.text = item.text
+            newsPaper.apply {
+                text = item.text
+                isSelected = true
+            }
             setOnClickListener {
                 listener.setOnClickListener(item.url)
+            }
+            if (item.text.equals("independent", true) || item.text.equals("daily post", true)) {
+                cardView.setCardBackgroundColor(Color.parseColor("#CFCFCF"))
+            } else {
+                cardView.setCardBackgroundColor(Color.parseColor("#FAFAFA"))
             }
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CustomAdapter.ViewHolder {
         val v = LayoutInflater.from(parent.context).inflate(R.layout.list_layout, parent, false)
         return ViewHolder(v)
     }
@@ -31,7 +40,7 @@ class CustomAdapter(private val userList: ArrayList<User>, private val listener:
         return userList.size
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) =
+    override fun onBindViewHolder(holder: CustomAdapter.ViewHolder, position: Int) =
         holder.bind(userList[position])
 
 

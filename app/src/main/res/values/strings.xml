@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">List View</string>
+    <string name="app_name">Newspaper List</string>
     <string name="todo">TODO</string>
-    <string name="newspaper">The Voice Newspaper</string>
+    <string name="newspaper">Nigerian Entertainment Today</string>
 </resources>

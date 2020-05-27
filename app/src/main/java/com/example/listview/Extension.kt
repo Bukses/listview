@@ -14,7 +14,6 @@ import androidx.core.graphics.drawable.DrawableCompat
 
 fun Activity.showWebView(url: String) {
     val customTabsIntent = CustomTabsIntent.Builder()
-        .setToolbarColor(ContextCompat.getColor(this, R.color.colorPrimary))
         .setCloseButtonIcon(getBitmap(this, R.drawable.ic_arrow_back))
         .addDefaultShareMenuItem()
         .setShowTitle(true)
