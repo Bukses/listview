@@ -11,20 +11,27 @@ import com.example.listview.interfaces.Clicklistener
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), Clicklistener {
-
     lateinit var adapter:CustomAdapter
     lateinit var userList: ArrayList<User>
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        initData()
+        populate()
+    }
+    private fun initData() {
 
         listView.adapter = CustomAdapter (userList,this)
         listView.adapter=adapter
 
         val listView = findViewById<RecyclerView>(R.id.listView)
         listView.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
+
     }
+
 
     private fun populate() {
         val users=ArrayList<User>()
