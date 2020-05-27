@@ -1,17 +1,28 @@
 package com.example.listview
 
+import android.app.PendingIntent.getActivity
 import android.os.Bundle
+import android.widget.Adapter
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.listview.adapter.CustomAdapter
 import com.example.listview.interfaces.Clicklistener
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), Clicklistener {
 
+    lateinit var adapter:CustomAdapter
+    lateinit var userList: ArrayList<User>
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        listView.adapter = CustomAdapter (userList,this)
+        listView.adapter=adapter
+
+        val listView = findViewById<RecyclerView>(R.id.listView)
         listView.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
     }
 
@@ -49,6 +60,7 @@ class MainActivity : AppCompatActivity(), Clicklistener {
         users.add(User("Tell Magazine", R.drawable.ic_tell, "https://tell.ng/"))
         users.add(User("Thisday", R.drawable.ic_this_day, "https://www.thisdaylive.com/"))
         users.add(User("The Sun", R.drawable.ic_the_sun, "https://www.sunnewsonline.com/?p=*****"))
+
     }
 
     override fun setOnClickListener(url: String) {
