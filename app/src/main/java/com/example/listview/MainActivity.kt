@@ -1,8 +1,12 @@
 package com.example.listview
 
-import android.app.PendingIntent.getActivity
+import android.app.SearchManager
+import android.content.Context
 import android.os.Bundle
-import android.widget.Adapter
+import android.view.Menu
+import android.view.MenuItem
+import android.widget.Filterable
+import android.widget.SearchView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -13,12 +17,17 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), Clicklistener {
 
+    var searchView:SearchView?=null
+    var users = ArrayList<User>()
+    var adapter = CustomAdapter (users,this)
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         supportActionBar?.apply {
             this.themedContext.setTheme(R.style.ToolbarTheme)
+
         }
         val listView = findViewById<RecyclerView>(R.id.listView)
         listView.apply {
@@ -30,8 +39,6 @@ class MainActivity : AppCompatActivity(), Clicklistener {
 
         populate()
     }
-
-
 
     private fun populate() {
 
@@ -66,6 +73,7 @@ class MainActivity : AppCompatActivity(), Clicklistener {
         users.add(User("New Telegraph", R.drawable.ic_new_telegraph, "https://www.newtelegraphng.com/"))
         users.add(User("Nigerian Entertainment Today", R.drawable.ic_net, "https://thenet.ng/"))
         users.add(User("Tell Magazine", R.drawable.ic_tell, "https://tell.ng/"))
+        users.add(User("The Cable", R.drawable.ic_tell, "https://www.thecable.ng/"))
         users.add(User("Thisday", R.drawable.ic_this_day, "https://www.thisdaylive.com/"))
         users.add(User("The Sun", R.drawable.ic_the_sun, "https://www.sunnewsonline.com/?p=*****"))
 
@@ -77,4 +85,48 @@ class MainActivity : AppCompatActivity(), Clicklistener {
     override fun setOnClickListener(url: String) {
         showWebView(url)
     }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.main_menu, menu)
+
+
+        val searchManager = getSystemService(Context.SEARCH_SERVICE) as SearchManager
+        searchView = menu!!.findItem(R.id.action_search).actionView as SearchView
+        searchView!!.setSearchableInfo(searchManager.getSearchableInfo((componentName)))
+        searchView!!.maxWidth = Int.MAX_VALUE
+
+        searchView!!.setOnQueryTextListener(object:SearchView.OnQueryTextListener{
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                adapter.filter.filter(query)
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                adapter.filter.filter(newText)
+                return false
+            }
+
+        })
+
+        return true
+    }
+
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        val id = item.itemId
+        return if (id == R.id.action_search){
+            true
+        }  else super.onOptionsItemSelected(item)
+    }
+
+    override fun onBackPressed() {
+        if (!searchView!!.isIconified()) {
+            searchView!!.onActionViewCollapsed();
+        }else{
+            super.onBackPressed();
+        }
+    }
+
 }
+
+
