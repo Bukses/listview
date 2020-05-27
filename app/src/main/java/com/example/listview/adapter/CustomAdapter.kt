@@ -37,5 +37,3 @@ class CustomAdapter(private val userList: ArrayList<User>, private val listener:
 
 }
 
-
-
