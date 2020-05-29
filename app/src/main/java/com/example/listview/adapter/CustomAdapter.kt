@@ -64,10 +64,7 @@ class CustomAdapter(private val userList: ArrayList<User>, private val listener:
                     for(row in userList) {
                         if (row.text.toLowerCase(Locale.ROOT).contains(charSearch.toLowerCase(
                                 Locale.ROOT
-                            )
-                            )
-                        )
-                        resultList.add(row)
+                            ))) resultList.add(row)
                     }
                     filterList=resultList
                 }
@@ -77,7 +74,7 @@ class CustomAdapter(private val userList: ArrayList<User>, private val listener:
 
             }
 
-            override fun publishResults(charSquence: CharSequence?, filterResults: FilterResults?) {
+            override fun publishResults(charSequence: CharSequence?, filterResults: FilterResults?) {
                filterList = filterResults!!.values as ArrayList<User>
                 notifyDataSetChanged()
             }

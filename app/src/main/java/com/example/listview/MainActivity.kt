@@ -18,15 +18,14 @@ import kotlinx.android.synthetic.main.activity_main.*
 class MainActivity : AppCompatActivity(), Clicklistener {
 
     var searchView:SearchView?=null
-    var users = ArrayList<User>()
-    var adapter = CustomAdapter (users,this)
+    lateinit var adapter : CustomAdapter
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         supportActionBar?.apply {
-            this.themedContext.setTheme(R.style.ToolbarTheme)
+            this.themedContext.setTheme(R.style.MyToolBarStyle)
 
         }
         val listView = findViewById<RecyclerView>(R.id.listView)
@@ -73,11 +72,11 @@ class MainActivity : AppCompatActivity(), Clicklistener {
         users.add(User("New Telegraph", R.drawable.ic_new_telegraph, "https://www.newtelegraphng.com/"))
         users.add(User("Nigerian Entertainment Today", R.drawable.ic_net, "https://thenet.ng/"))
         users.add(User("Tell Magazine", R.drawable.ic_tell, "https://tell.ng/"))
-        users.add(User("The Cable", R.drawable.ic_tell, "https://www.thecable.ng/"))
+        users.add(User("The Cable", R.drawable.ic_thecable, "https://www.thecable.ng/"))
         users.add(User("Thisday", R.drawable.ic_this_day, "https://www.thisdaylive.com/"))
         users.add(User("The Sun", R.drawable.ic_the_sun, "https://www.sunnewsonline.com/?p=*****"))
 
-        val adapter = CustomAdapter (users,this)
+        adapter = CustomAdapter (users,this)
         listView.adapter= adapter
 
     }
